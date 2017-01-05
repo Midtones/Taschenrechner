@@ -8,20 +8,37 @@ namespace Taschenrechner
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            // Anforderung -> Addieren: Benutzer gibt zwei Zahlen ein zum Addieren.
-            float zahl1 = EingabeWert("Gib die erste Zahl ein: ");
-            float zahl2 = EingabeWert("Gib die zweite Zahl ein: ");
+            // Benutzereingaben werden abgefragt.
+            float zahl1 = HoleBenutzerdaten("Gib die erste Zahl ein: ");
+            float zahl2 = HoleBenutzerdaten("Gib die zweite Zahl ein: ");
+            string operation = HoleOperator("gib die auszuführende Operation ein (+ oder -): ");
 
-            // Berechnung wird ausgeführt
-            float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-            
-            // Ausgabe
-            Console.WriteLine("Das Ergebnis ist {0}", ergebnis);
+            // Berechnung wird ausgeführt und Ausgegeben
+            if (operation == "+") 
+            {
+                float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
+            }
+            else if (operation == "-")
+            {
+                float ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
+            }
+            else if (operation == "/")
+            {
+                float ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
+            }
+            else
+            {
+                Console.WriteLine("Dein Operator war ungültig!");
+            }
 
             // Kommandozeile wartet auf eine Benutzereingabe
-            WarteAufBenutzerEingabe();
+            WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
         }
 
         /// <summary>
@@ -29,13 +46,26 @@ namespace Taschenrechner
         /// </summary>
         /// <param name="ausgabeText"></param>
         /// <returns></returns>
-        static float EingabeWert(string ausgabeText)
+        static float HoleBenutzerdaten(string ausgabeText)
         {
             Console.Write(ausgabeText); // gibt Text aus als Anweisung für den Nutzer.
             string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
             float wertZuZahl = float.Parse(wert); // Der eingegeben Wert string wird in einen float gewandelt.
 
             return wertZuZahl; //Ausgabe des eingegbenen Wertes.
+        }
+
+        /// <summary>
+        /// Operator Benutzereingabe
+        /// </summary>
+        /// <param name="ausgabeText"></param>
+        /// <returns></returns>
+        static string HoleOperator(string ausgabeText)
+        {
+            Console.Write(ausgabeText); // gibt Text aus als Anweisung für den Nutzer.
+            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+
+            return wert; //Ausgabe des eingegbenen Wertes.
         }
 
         /// <summary>
@@ -54,11 +84,41 @@ namespace Taschenrechner
         }
 
         /// <summary>
+        /// Subtrahiert zweit Wert von einander.
+        /// </summary>
+        /// <param name="wert1"></param>
+        /// <param name="wert2"></param>
+        /// <returns></returns>
+        static float Subtrahieren(float wert1, float wert2)
+        {
+            // Subtrahiere wert1 mit wert2
+            float differenz = wert1 - wert2;
+
+            // Gibt das Ergebnis der Subtraktion zurück
+            return differenz;
+        }
+
+        /// <summary>
+        /// Dividiert zweit Wert.
+        /// </summary>
+        /// <param name="wert1"></param>
+        /// <param name="wert2"></param>
+        /// <returns></returns>
+        static float Division(float wert1, float wert2)
+        {
+            // Subtrahiere wert1 mit wert2
+            float differenz = wert1 / wert2;
+
+            // Gibt das Ergebnis der Subtraktion zurück
+            return differenz;
+        }
+
+        /// <summary>
         /// Hält die Kommandozeile offen und wartet auf eine Tasten eingabe.
         /// </summary>
-        static void WarteAufBenutzerEingabe()
+        static void WarteAufBenutzerEingabe(string ausgabeText)
         {
-            Console.WriteLine("Zum beenden einfach die EINGABETASTE Drücken!");
+            Console.WriteLine(ausgabeText);
             Console.ReadLine();
         }      
     }
