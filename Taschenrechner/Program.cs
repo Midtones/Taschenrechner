@@ -18,8 +18,12 @@ namespace Taschenrechner
             Console.Write("Bitte gib die zweite Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
             string zweiteZahl = Console.ReadLine();
 
+            // String in Zahl konvertieren
+            double zahl1 = Convert.ToDouble(ersteZahl);
+            double zahl2 = double.Parse(zweiteZahl);
+
             // Berechnung wird ausgeführt
-            int ergebnis = Convert.ToInt32(ersteZahl) + int.Parse(zweiteZahl); // Ergebnis berechnet die beiden Zahlen. int.Parse konvertiert den Text in eine Zahl.
+            double ergebnis = zahl1 + zahl2; // Ergebnis berechnet die beiden Zahlen. 
             
             // Ausgabe
             Console.WriteLine("Das Ergebnis ist {0}", ergebnis);
