@@ -11,23 +11,31 @@ namespace Taschenrechner
         static void Main(string[] args)
         {
             // Anforderung -> Addieren: Benutzer gibt zwei Zahlen ein zum Addieren.
-
-            Console.Write("Bitte gib die erste Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
-            string ersteZahl = Console.ReadLine();
-
-            Console.Write("Bitte gib die zweite Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
-            string zweiteZahl = Console.ReadLine();
-
-            // String in Zahl konvertieren
-            float zahl1 = Convert.ToSingle(ersteZahl); 
-            float zahl2 = float.Parse(zweiteZahl);
+            float zahl1 = EingabeWert("Gib die erste Zahl ein: ");
+            float zahl2 = EingabeWert("Gib die zweite Zahl ein: ");
 
             // Berechnung wird ausgeführt
             float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             
             // Ausgabe
             Console.WriteLine("Das Ergebnis ist {0}", ergebnis);
+
+            // Kommandozeile wartet auf eine Benutzereingabe
             WarteAufBenutzerEingabe();
+        }
+
+        /// <summary>
+        /// Gibt einen Anweisungstext für den Benutzer in der Konsole aus und wandelt die Benutzereingabe vom Typ string in einen float um.
+        /// </summary>
+        /// <param name="ausgabeText"></param>
+        /// <returns></returns>
+        static float EingabeWert(string ausgabeText)
+        {
+            Console.Write(ausgabeText); // gibt Text aus als Anweisung für den Nutzer.
+            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+            float wertZuZahl = float.Parse(wert); // Der eingegeben Wert string wird in einen float gewandelt.
+
+            return wertZuZahl; //Ausgabe des eingegbenen Wertes.
         }
 
         /// <summary>
@@ -40,6 +48,7 @@ namespace Taschenrechner
         {
             // Addiert wert1 mit wert2
             float summe = wert1 + wert2;
+
             // Gibt das Ergebnis aus der Methode zurück
             return summe;
         }
