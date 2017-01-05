@@ -19,11 +19,11 @@ namespace Taschenrechner
             string zweiteZahl = Console.ReadLine();
 
             // String in Zahl konvertieren
-            double zahl1 = Convert.ToDouble(ersteZahl);
-            double zahl2 = double.Parse(zweiteZahl);
+            float zahl1 = Convert.ToSingle(ersteZahl);
+            float zahl2 = float.Parse(zweiteZahl);
 
             // Berechnung wird ausgeführt
-            double ergebnis = zahl1 + zahl2; // Ergebnis berechnet die beiden Zahlen. 
+            float ergebnis = zahl1 + zahl2; // Ergebnis berechnet die beiden Zahlen. 
             
             // Ausgabe
             Console.WriteLine("Das Ergebnis ist {0}", ergebnis);
