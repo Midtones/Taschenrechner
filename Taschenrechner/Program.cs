@@ -23,11 +23,34 @@ namespace Taschenrechner
             float zahl2 = float.Parse(zweiteZahl);
 
             // Berechnung wird ausgeführt
-            float ergebnis = zahl1 + zahl2; // Ergebnis berechnet die beiden Zahlen. 
+            float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             
             // Ausgabe
             Console.WriteLine("Das Ergebnis ist {0}", ergebnis);
-            Console.ReadKey();
+            WarteAufBenutzerEingabe();
         }
+
+        /// <summary>
+        /// Addiert zweit Werte zusammen.
+        /// </summary>
+        /// <param name="wert1"></param>
+        /// <param name="wert2"></param>
+        /// <returns></returns>
+        static float Addieren(float wert1, float wert2)
+        {
+            // Addiert wert1 mit wert2
+            float summe = wert1 + wert2;
+            // Gibt das Ergebnis aus der Methode zurück
+            return summe;
+        }
+
+        /// <summary>
+        /// Hält die Kommandozeile offen und wartet auf eine Tasten eingabe.
+        /// </summary>
+        static void WarteAufBenutzerEingabe()
+        {
+            Console.WriteLine("Zum beenden einfach die EINGABETASTE Drücken!");
+            Console.ReadLine();
+        }      
     }
 }
