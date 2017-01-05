@@ -16,31 +16,62 @@ namespace Taschenrechner
             float zahl2 = HoleBenutzerdaten("Gib die zweite Zahl ein: ");
             string operation = HoleOperator("gib die auszuführende Operation ein (+ - / *): ");
 
-            // Berechnung wird ausgeführt und Ausgegeben
-            if (operation == "+") 
+            // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
+
+            float ergebnis; // Variable muss ausserhalb der switch Anweisung stehen!
+
+            switch (operation)
             {
-                float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
+                case "+":
+                    ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
+                    break;
+
+                case "-":
+                    ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
+                    break;
+
+                case "/":
+                    ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
+                    break;
+
+                case "*":
+                    ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
+                    break;
+
+                default:
+                    Console.WriteLine("Dein Operator war ungültig!");
+                    break;
             }
-            else if (operation == "-")
-            {
-                float ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
-            }
-            else if (operation == "/")
-            {
-                float ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
-            }
-            else if (operation == "*")
-            {
-                float ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
-            }
-            else
-            {
-                Console.WriteLine("Dein Operator war ungültig!");
-            }
+
+            //// Berechnung wird ausgeführt und Ausgegeben. Gelöst mit if und else if
+            //if (operation == "+")
+            //{
+            //    float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            //    Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
+            //}
+            //else if (operation == "-")
+            //{
+            //    float ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            //    Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
+            //}
+            //else if (operation == "/")
+            //{
+            //    float ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            //    Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
+            //}
+            //else if (operation == "*")
+            //{
+            //    float ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            //    Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Dein Operator war ungültig!");
+            //}
 
             // Kommandozeile wartet auf eine Benutzereingabe
             WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
