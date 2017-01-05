@@ -14,7 +14,7 @@ namespace Taschenrechner
             // Benutzereingaben werden abgefragt.
             float zahl1 = HoleBenutzerdaten("Gib die erste Zahl ein: ");
             float zahl2 = HoleBenutzerdaten("Gib die zweite Zahl ein: ");
-            string operation = HoleOperator("gib die auszuführende Operation ein (+ oder -): ");
+            string operation = HoleOperator("gib die auszuführende Operation ein (+ - / *): ");
 
             // Berechnung wird ausgeführt und Ausgegeben
             if (operation == "+") 
@@ -31,6 +31,11 @@ namespace Taschenrechner
             {
                 float ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
                 Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
+            }
+            else if (operation == "*")
+            {
+                float ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
             }
             else
             {
@@ -112,6 +117,21 @@ namespace Taschenrechner
             // Gibt das Ergebnis der Subtraktion zurück
             return differenz;
         }
+
+        /// <summary>
+        /// Multipliziert zweit Wert.
+        /// </summary>
+        /// <param name="wert1"></param>
+        /// <param name="wert2"></param>
+        /// <returns></returns>
+        static float Multiplikation(float wert1, float wert2)
+        {
+            // Subtrahiere wert1 mit wert2
+            float produkt = wert1 * wert2;
+
+            // Gibt das Ergebnis der Subtraktion zurück
+            return produkt;
+        }       
 
         /// <summary>
         /// Hält die Kommandozeile offen und wartet auf eine Tasten eingabe.
