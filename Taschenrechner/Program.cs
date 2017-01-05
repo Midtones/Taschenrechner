@@ -19,7 +19,7 @@ namespace Taschenrechner
             string zweiteZahl = Console.ReadLine();
 
             // String in Zahl konvertieren
-            float zahl1 = Convert.ToSingle(ersteZahl);
+            float zahl1 = Convert.ToSingle(ersteZahl); 
             float zahl2 = float.Parse(zweiteZahl);
 
             // Berechnung wird ausgeführt
