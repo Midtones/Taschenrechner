@@ -11,70 +11,23 @@ namespace Taschenrechner
 
         static void Main(string[] args)
         {
+            // Konsolen Typo
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.CursorSize = 100;
+            Console.Title = "Rechner";
+
             // Benutzereingaben werden abgefragt.
             float zahl1 = HoleBenutzerdaten("Gib die erste Zahl ein: ");
             float zahl2 = HoleBenutzerdaten("Gib die zweite Zahl ein: ");
             string operation = HoleOperator("gib die auszuführende Operation ein (+ - / *): ");
 
             // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
-
-            float ergebnis; // Variable muss ausserhalb der switch Anweisung stehen!
-
-            switch (operation)
-            {
-                case "+":
-                    ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                    Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
-                    break;
-
-                case "-":
-                    ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                    Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
-                    break;
-
-                case "/":
-                    ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                    Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
-                    break;
-
-                case "*":
-                    ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-                    Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
-                    break;
-
-                default:
-                    Console.WriteLine("Dein Operator war ungültig!");
-                    break;
-            }
-
-            //// Berechnung wird ausgeführt und Ausgegeben. Gelöst mit if und else if
-            //if (operation == "+")
-            //{
-            //    float ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-            //    Console.WriteLine("Das Ergebnis {0} + {1} = {2}", zahl1, zahl2, ergebnis);
-            //}
-            //else if (operation == "-")
-            //{
-            //    float ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-            //    Console.WriteLine("Das Ergebnis {0} - {1} = {2}", zahl1, zahl2, ergebnis);
-            //}
-            //else if (operation == "/")
-            //{
-            //    float ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-            //    Console.WriteLine("Das Ergebnis {0} / {1} = {2}", zahl1, zahl2, ergebnis);
-            //}
-            //else if (operation == "*")
-            //{
-            //    float ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
-            //    Console.WriteLine("Das Ergebnis {0} * {1} = {2}", zahl1, zahl2, ergebnis);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Dein Operator war ungültig!");
-            //}
+            float ausgabeErgebnis = BerrechnungMitSwitchCase(operation, zahl1, zahl2);
+            Console.WriteLine("Das Ergebnis {1} {0} {2} = {3}",operation ,zahl1, zahl2, ausgabeErgebnis);
 
             // Kommandozeile wartet auf eine Benutzereingabe
             WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
+
         }
 
         /// <summary>
@@ -162,7 +115,76 @@ namespace Taschenrechner
 
             // Gibt das Ergebnis der Subtraktion zurück
             return produkt;
-        }       
+        }
+
+        /// <summary>
+        /// Berrechnet zwei Zahlen mit ausgewählter operation. Note: Methode mit SwitchCase
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="zahl1"></param>
+        /// <param name="zahl2"></param>
+        static float BerrechnungMitSwitchCase(string operation, float zahl1, float zahl2)
+        {
+            float ergebnis = 0F; // Variable muss ausserhalb der switch Anweisung stehen!
+
+            switch (operation)
+            {
+                case "+":
+                    ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    break;
+
+                case "-":
+                    ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    break;
+
+                case "/":
+                    ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    break;
+
+                case "*":
+                    ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    break;
+
+                default:
+                    Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", operation);
+                    break;
+            }
+            return ergebnis;
+        }
+
+        /// <summary>
+        /// Berrechnet zwei Zahlen mit ausgewählter operation. Note: Methode mit else if
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="zahl1"></param>
+        /// <param name="zahl2"></param>
+        /// <returns></returns>
+        static float BerrechnungMitIfElse(string operation, float zahl1, float zahl2)
+        {
+            float ergebnis = 0F;
+            // Berechnung wird ausgeführt gelöst mit if und else if
+            if (operation == "+")
+            {
+                ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            }
+            else if (operation == "-")
+            {
+                ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            }
+            else if (operation == "/")
+            {
+                ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            }
+            else if (operation == "*")
+            {
+                ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+            }
+            else
+            {
+                Console.WriteLine("Dein Operator war ungültig!");
+            }
+            return ergebnis;
+        }
 
         /// <summary>
         /// Hält die Kommandozeile offen und wartet auf eine Tasten eingabe.
