@@ -8,6 +8,14 @@ namespace Taschenrechner
 {
     class RechnerModel
     {
+        // Property / Eigenschaft
+        public float Ergebnis { get; private set; }
+
+        public RechnerModel()
+        {
+            Ergebnis = 0F;
+        }
+        
 
         /// <summary>
         /// Berrechnet zwei Zahlen mit ausgewählter operation. Note: Methode mit SwitchCase
@@ -15,33 +23,30 @@ namespace Taschenrechner
         /// <param name="operation"></param>
         /// <param name="zahl1"></param>
         /// <param name="zahl2"></param>
-        public float BerrechneMitSwitchCase(string operation, float zahl1, float zahl2)
+        public void BerrechneMitSwitchCase(string operation, float zahl1, float zahl2)
         {
-            float ergebnis = 0F; // Variable muss ausserhalb der switch Anweisung stehen!
-
-            switch (operation)
+               switch (operation)
             {
                 case "+":
-                    ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "-":
-                    ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "/":
-                    ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "*":
-                    ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 default:
                     Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", operation);
                     break;
             }
-            return ergebnis;
         }
 
         /// <summary>
