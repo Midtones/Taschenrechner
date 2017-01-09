@@ -21,12 +21,10 @@ namespace Taschenrechner
         public void Ausführen()
         {
             // Benutzereingaben werden abgefragt.
-            float zahl1 = view.HoleZahlVomBenutzer();
-            string operation = view.HoleOperator();
-            float zahl2 = view.HoleZahlVomBenutzer();
+            view.HoleBenutzerEingaben();
 
             // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
-            model.BerrechneMitSwitchCase(operation, zahl1, zahl2);
+            model.BerrechneMitSwitchCase();
 
             // Ausgabe
             view.GibErgebnisAus();

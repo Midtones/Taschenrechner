@@ -31,6 +31,33 @@ namespace Taschenrechner
         }
 
         /// <summary>
+        /// Gibt einen Anweisungstext für den Benutzer in der Konsole aus und wandelt die Benutzereingabe vom Typ string in einen float um.
+        /// </summary>
+        /// <param name="ausgabeText"></param>
+        /// <returns></returns>
+        private float HoleZahlVomBenutzer()
+        {
+            Console.Write("Gib eine Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
+            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+            float wertZuZahl = float.Parse(wert); // Der eingegeben Wert string wird in einen float gewandelt.
+
+            return wertZuZahl; //Ausgabe des eingegbenen Wertes.
+        }
+
+        /// <summary>
+        /// Operator Benutzereingabe
+        /// </summary>
+        /// <param name="ausgabeText"></param>
+        /// <returns></returns>
+        private string HoleOperator()
+        {
+            Console.Write("gib die auszuführende Operation ein (+ - / *): "); // gibt Text aus als Anweisung für den Nutzer.
+            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+
+            return wert; //Ausgabe des eingegbenen Wertes.
+        }
+
+        /// <summary>
         /// Holt sich das Ergebnis aus dem RechnerModel und gibt den passenden Text aus.
         /// </summary>
         /// <param name="operation"></param>
@@ -62,30 +89,13 @@ namespace Taschenrechner
         }
 
         /// <summary>
-        /// Gibt einen Anweisungstext für den Benutzer in der Konsole aus und wandelt die Benutzereingabe vom Typ string in einen float um.
+        /// Holt sich alle benötigten Daten für die Berrechnung
         /// </summary>
-        /// <param name="ausgabeText"></param>
-        /// <returns></returns>
-        public float HoleZahlVomBenutzer()
+        public void HoleBenutzerEingaben()
         {
-            Console.Write("Gib eine Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
-            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
-            float wertZuZahl = float.Parse(wert); // Der eingegeben Wert string wird in einen float gewandelt.
-
-            return wertZuZahl; //Ausgabe des eingegbenen Wertes.
-        }
-
-        /// <summary>
-        /// Operator Benutzereingabe
-        /// </summary>
-        /// <param name="ausgabeText"></param>
-        /// <returns></returns>
-        public string HoleOperator()
-        {
-            Console.Write("gib die auszuführende Operation ein (+ - / *): "); // gibt Text aus als Anweisung für den Nutzer.
-            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
-
-            return wert; //Ausgabe des eingegbenen Wertes.
+            model.Zahl1 = HoleZahlVomBenutzer();
+            model.Operation = HoleOperator();
+            model.Zahl2 = HoleZahlVomBenutzer();
         }
 
         /// <summary>

@@ -10,9 +10,9 @@ namespace Taschenrechner
     {
         // Property / Eigenschaft
         public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
-        public string Operation { get; private set; }
-        public float Zahl1 { get; private set; }
-        public float Zahl2 { get; private set; }
+        public string Operation { get; set; }
+        public float Zahl1 { get; set; }
+        public float Zahl2 { get; set; }
 
         /// <summary>
         /// Constructor legt fest welche Variablen für die Klasse festgelgt werden müssen, damit die Methoden arbeiten können.
@@ -28,6 +28,8 @@ namespace Taschenrechner
         {
             Ergebnis = 0F;
             Operation = "unbekannt";
+            Zahl1 = 0F;
+            Zahl2 = 0F;
         }
         
 
@@ -37,32 +39,29 @@ namespace Taschenrechner
         /// <param name="operation"></param>
         /// <param name="zahl1"></param>
         /// <param name="zahl2"></param>
-        public void BerrechneMitSwitchCase(string operation, float zahl1, float zahl2)
+        public void BerrechneMitSwitchCase()
         {
-            this.Operation = operation;
-            this.Zahl1 = zahl1;
-            this.Zahl2 = zahl2;
 
-               switch (operation)
+               switch (this.Operation)
             {
                 case "+":
-                    Ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Addieren(this.Zahl1, this.Zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "-":
-                    Ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Subtrahieren(this.Zahl1, this.Zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "/":
-                    Ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Division(this.Zahl1, this.Zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 case "*":
-                    Ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                    Ergebnis = Multiplikation(this.Zahl1, this.Zahl2); // Ergebnis berechnet die beiden Zahlen.
                     break;
 
                 default:
-                    Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", operation);
+                    Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", this.Operation);
                     break;
             }
         }
