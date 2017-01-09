@@ -12,23 +12,15 @@ namespace Taschenrechner
         static void Main(string[] args)
         {
             // neue Objekte von den Klassen werden angelegt und ggf. mit einander verknüpft.
-            RechnerModel model = new RechnerModel();
-            ConsoleView view = new ConsoleView(model);
+            RechnerModel rechnerKlasse = new RechnerModel();
+            ConsoleView viewKlasse = new ConsoleView(rechnerKlasse);
+            AnwendungsController controllerKlasse = new AnwendungsController(rechnerKlasse, viewKlasse);
 
             // Consolen aussehen wird festgelegt.
-            view.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
+            viewKlasse.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
 
-            // Benutzereingaben werden abgefragt.
-            float zahl1 = view.HoleZahlVomBenutzer();
-            string operation = view.HoleOperator();
-            float zahl2 = view.HoleZahlVomBenutzer();
-            
-            // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
-            model.BerrechneMitSwitchCase(operation, zahl1, zahl2);
+            controllerKlasse.Ausführen();
 
-            // Ausgabe
-            view.GibErgebnisAus(zahl1, operation, zahl2);
-            view.WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
         }
     }
 }
