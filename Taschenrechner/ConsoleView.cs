@@ -42,16 +42,35 @@ namespace Taschenrechner
         private float HoleZahlVomBenutzer()
         {
             string eingabe;
-            Console.Write("Gib eine Zahl ein (Q zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
-
+            Console.Write("Gib eine Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
             eingabe = Console.ReadLine(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
+            
+            return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
+        }
+
+        public void HoleFortlaufendeZahlVomBenutzer()
+        {
+            string eingabe;
+
+            eingabe = HoleNeueZahlVomBenutzer(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
             if (eingabe == "Q")
             {
                 BenutzerWillBeenden = true;
-                eingabe = "0";
             }
-            
-            return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
+            else
+            {
+                model.Zahl1 = model.Ergebnis;
+                model.Zahl2 = Convert.ToSingle(eingabe);
+            }
+        }
+
+        private string HoleNeueZahlVomBenutzer()
+        {
+
+            Console.Write("Gib eine weiter Zahl ein (Q zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
+            string eingabe = Console.ReadLine(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
+
+            return eingabe;
         }
 
         /// <summary>
@@ -101,7 +120,7 @@ namespace Taschenrechner
         /// <summary>
         /// Holt sich alle benötigten Daten für die Berrechnung
         /// </summary>
-        public void HoleBenutzerEingaben()
+        public void HoleBenutzerEingabenFürErsteBerechnung()
         {
             model.Zahl1 = HoleZahlVomBenutzer();
             model.Operation = HoleOperator();
