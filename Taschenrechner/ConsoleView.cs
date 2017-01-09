@@ -35,28 +35,28 @@ namespace Taschenrechner
         /// </summary>
         /// <param name="operation"></param>
         /// <param name="ergebnis"></param>
-        public void GibErgebnisAus(float zahl1, string operation, float zahl2)
+        public void GibErgebnisAus()
         {
-            switch (operation)
+            switch (model.Operation)
             {
                 case "+":
-                    Console.WriteLine("Die Summe von {0} {1} {2} = {3}", zahl1, operation, zahl2, model.Ergebnis);
+                    Console.WriteLine("Die Summe von {0} {1} {2} = {3}", model.Zahl1, model.Operation, model.Zahl2, model.Ergebnis);
                     break;
 
                 case "-":
-                    Console.WriteLine("Die Differenz von {0} {1} {2} = {3}", zahl1, operation, zahl2, model.Ergebnis);
+                    Console.WriteLine("Die Differenz von {0} {1} {2} = {3}", model.Zahl1, model.Operation, model.Zahl2, model.Ergebnis);
                     break;
 
                 case "/":
-                    Console.WriteLine("Der Quotient von {0} {1} {2} = {3}", zahl1, operation, zahl2, model.Ergebnis);
+                    Console.WriteLine("Der Quotient von {0} {1} {2} = {3}", model.Zahl1, model.Operation, model.Zahl2, model.Ergebnis);
                     break;
 
                 case "*":
-                    Console.WriteLine("Das Produkt von {0} {1} {2} = {3}", zahl1, operation, zahl2, model.Ergebnis);
+                    Console.WriteLine("Das Produkt von {0} {1} {2} = {3}", model.Zahl1, model.Operation, model.Zahl2, model.Ergebnis);
                     break;
 
                 default:
-                    Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", operation);
+                    Console.WriteLine("Dein Operator war ungültig! Du hast {0} eingegeben damit kann ich nicht rechnen!", model.Operation);
                     break;
             }
         }

@@ -10,6 +10,9 @@ namespace Taschenrechner
     {
         // Property / Eigenschaft
         public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
+        public string Operation { get; private set; }
+        public float Zahl1 { get; private set; }
+        public float Zahl2 { get; private set; }
 
         /// <summary>
         /// Constructor legt fest welche Variablen für die Klasse festgelgt werden müssen, damit die Methoden arbeiten können.
@@ -24,6 +27,7 @@ namespace Taschenrechner
         public RechnerModel()
         {
             Ergebnis = 0F;
+            Operation = "unbekannt";
         }
         
 
@@ -35,6 +39,10 @@ namespace Taschenrechner
         /// <param name="zahl2"></param>
         public void BerrechneMitSwitchCase(string operation, float zahl1, float zahl2)
         {
+            this.Operation = operation;
+            this.Zahl1 = zahl1;
+            this.Zahl2 = zahl2;
+
                switch (operation)
             {
                 case "+":

@@ -29,7 +29,7 @@ namespace Taschenrechner
             model.BerrechneMitSwitchCase(operation, zahl1, zahl2);
 
             // Ausgabe
-            view.GibErgebnisAus(zahl1, operation, zahl2);
+            view.GibErgebnisAus();
             view.WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
         }
 
