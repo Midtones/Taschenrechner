@@ -21,21 +21,28 @@ namespace Taschenrechner
 
         public void TaschenrechnerAusführen()
         {
+            // holt Benutzereingabe für erste Berrechnung
             view.HoleBenutzerEingabenFürErsteBerechnung();
+
+            // Berrechnung
             model.BerrechneMitSwitchCase();
+
+            // Ausgabe
             view.GibErgebnisAus();
+
+            // neue Zahl oder Beenden?
             view.HoleFortlaufendeZahlVomBenutzer();
 
 
             while (!view.BenutzerWillBeenden)
             {
-                // Benutzereingaben werden abgefragt.
+                // neu Berrechnung
                 model.BerrechneMitSwitchCase();
 
                 // Ausgabe
                 view.GibErgebnisAus();
 
-                // neue Zahl oder Beenden
+                // neue Zahl oder Beenden?
                 view.HoleFortlaufendeZahlVomBenutzer();
             }
  

@@ -31,7 +31,7 @@ namespace Taschenrechner
         {
             Console.ForegroundColor = Farbe;
             Console.CursorSize = cursorSize;
-            Console.Title = "title";
+            Console.Title = title;
         }
 
         /// <summary>
@@ -48,6 +48,10 @@ namespace Taschenrechner
             return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
         }
 
+        /// <summary>
+        /// Neue Eingabe wird geprüft ob der Benutzer beenden will oder das Ergebnis aus der alten Berrechnung wird zu model.Zahl1
+        /// und die neue Eingabe wird Zahl2
+        /// </summary>
         public void HoleFortlaufendeZahlVomBenutzer()
         {
             string eingabe;
@@ -64,6 +68,10 @@ namespace Taschenrechner
             }
         }
 
+        /// <summary>
+        /// weitere Zahl Benutzereingabe
+        /// </summary>
+        /// <returns></returns>
         private string HoleNeueZahlVomBenutzer()
         {
 
@@ -118,22 +126,13 @@ namespace Taschenrechner
         }
 
         /// <summary>
-        /// Holt sich alle benötigten Daten für die Berrechnung
+        /// Holt sich alle benötigten Eingaben für die erste Berrechnung
         /// </summary>
         public void HoleBenutzerEingabenFürErsteBerechnung()
         {
             model.Zahl1 = HoleZahlVomBenutzer();
             model.Operation = HoleOperator();
             model.Zahl2 = HoleZahlVomBenutzer();
-        }
-
-        /// <summary>
-        /// Hält die Kommandozeile offen und wartet auf eine Tasten eingabe.
-        /// </summary>
-        public void WarteAufBenutzerEingabe(string ausgabeText)
-        {
-            Console.WriteLine(ausgabeText);
-            Console.ReadLine();
         }
     }
 }

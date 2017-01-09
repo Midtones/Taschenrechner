@@ -16,7 +16,7 @@ namespace Taschenrechner
             ConsoleView viewKlasse = new ConsoleView(rechnerKlasse);
             AnwendungsController controllerKlasse = new AnwendungsController(rechnerKlasse, viewKlasse);
 
-            // Consolen aussehen wird festgelegt.
+            // Consolen aussehen anpassen.
             viewKlasse.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
 
             // Programm Taschenrechner wird gestartet.
