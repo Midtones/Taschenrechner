@@ -19,6 +19,7 @@ namespace Taschenrechner
             // Consolen aussehen wird festgelegt.
             viewKlasse.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
 
+            // Programm Taschenrechner wird gestartet.
             controllerKlasse.Ausführen();
 
         }
