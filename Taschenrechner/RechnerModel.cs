@@ -9,8 +9,18 @@ namespace Taschenrechner
     class RechnerModel
     {
         // Property / Eigenschaft
-        public float Ergebnis { get; private set; }
+        public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
 
+        /// <summary>
+        /// Constructor legt fest welche Variablen für die Klasse festgelgt werden müssen, damit die Methoden arbeiten können.
+        /// </summary>
+        // Achtung!
+        // Dieser Constructor hat keine festgelegten Variablen!
+        // So sieht ein normaler Construtor aus:
+        // public RechnerModel(float ergebnis)
+        // {
+        //      Ergebnis = ergebnis;
+        // }
         public RechnerModel()
         {
             Ergebnis = 0F;
@@ -116,31 +126,29 @@ namespace Taschenrechner
         /// <param name="zahl1"></param>
         /// <param name="zahl2"></param>
         /// <returns></returns>
-        public float BerrechneMitIfElse(string operation, float zahl1, float zahl2)
+        public void BerrechneMitIfElse(string operation, float zahl1, float zahl2)
         {
-            float ergebnis = 0F;
             // Berechnung wird ausgeführt gelöst mit if und else if
             if (operation == "+")
             {
-                ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             }
             else if (operation == "-")
             {
-                ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Ergebnis = Subtrahieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             }
             else if (operation == "/")
             {
-                ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Ergebnis = Division(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             }
             else if (operation == "*")
             {
-                ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
+                Ergebnis = Multiplikation(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             }
             else
             {
                 Console.WriteLine("Dein Operator war ungültig!");
             }
-            return ergebnis;
         }
     }
 }

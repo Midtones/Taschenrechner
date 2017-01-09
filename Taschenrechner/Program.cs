@@ -11,23 +11,23 @@ namespace Taschenrechner
 
         static void Main(string[] args)
         {
-            // Konsolen Typo
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.CursorSize = 100;
-            Console.Title = "Rechner";
+            // neue Objekte von den Klassen werden angelegt und ggf. mit einander verknüpft.
+            RechnerModel model = new RechnerModel();
+            ConsoleView view = new ConsoleView(model);
+
+            // Consolen aussehen wird festgelegt.
+            view.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
 
             // Benutzereingaben werden abgefragt.
-            ConsoleView view = new ConsoleView();
-            float zahl1 = view.HoleBenutzerdaten("Gib die erste Zahl ein: ");
-            float zahl2 = view.HoleBenutzerdaten("Gib die zweite Zahl ein: ");
-            string operation = view.HoleOperator("gib die auszuführende Operation ein (+ - / *): ");
-
+            float zahl1 = view.HoleZahlVomBenutzer();
+            string operation = view.HoleOperator();
+            float zahl2 = view.HoleZahlVomBenutzer();
+            
             // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
-            RechnerModel model = new RechnerModel();
             model.BerrechneMitSwitchCase(operation, zahl1, zahl2);
-            Console.WriteLine("Das Ergebnis {1} {0} {2} = {3}",operation ,zahl1, zahl2, model.Ergebnis);
 
-            // Kommandozeile wartet auf eine Benutzereingabe
+            // Ausgabe
+            view.GibErgebnisAus(zahl1, operation, zahl2);
             view.WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
         }
     }
