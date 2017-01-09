@@ -1,3 +1,57 @@
 Udemy C# Training 
 
 Projekt Taschenrechner 
+
+
+*** Shortcuts ***
+
+		// Property / Eigenschaft 
+        public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
+		// **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
+
+		// Console WriteLine
+		Console.WriteLine("Eine Textzeile ausgeben");
+		// **** shortcut **** "cw" tippen und zweimal "Tab-Taste".
+
+		// if Anweisung
+		if (true)
+        {
+			CODE
+        }
+		// **** shortcut **** "if" tippen und zweimal "Tab-Taste".
+
+		// Switch Case 
+		switch (switch_on)
+            {
+                default: CODE
+            }
+		// **** shortcut **** "switch" tippen und zweimal "Tab-Taste".
+
+		// for Schleifen
+		for (int i = 0; i < length; i++)
+        {
+			CODE
+        }
+		// **** shortcut **** "for" tippen und zweimal "Tab-Taste".
+
+		// Umgekehrte for Schleife
+		for (int i = length - 1; i >= 0; i--)
+        {
+			CODE
+        }
+		// **** shortcut **** "forr" tippen und zweimal "Tab-Taste".
+
+		// foreach Schleifen
+		foreach (var item in collection)
+        {
+			CODE	
+        }
+		// **** shortcut **** "foreach" tippen und zweimal "Tab-Taste".
+
+		// while Schleife
+		while (true)
+        {
+			CODE
+        }
+		// **** shortcut **** "while" tippen und zweimal "Tab-Taste".
+

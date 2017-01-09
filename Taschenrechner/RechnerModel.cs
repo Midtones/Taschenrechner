@@ -8,7 +8,7 @@ namespace Taschenrechner
 {
     class RechnerModel
     {
-        // Property / Eigenschaft
+        // Property / Eigenschaft **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
         public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
         public string Operation { get; set; }
         public float Zahl1 { get; set; }
@@ -31,7 +31,6 @@ namespace Taschenrechner
             Zahl1 = 0F;
             Zahl2 = 0F;
         }
-        
 
         /// <summary>
         /// Berrechnet zwei Zahlen mit ausgewählter operation. Note: Methode mit SwitchCase

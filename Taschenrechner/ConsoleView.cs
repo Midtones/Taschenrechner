@@ -10,11 +10,15 @@ namespace Taschenrechner
     {
         // Verknüft die Klasse RechnerModel mit der ConsoleView damit wir zugriff haben auf den Speicher vom Model.
         private RechnerModel model;
+        
+        // Propertys / Eigenschaften
+        public bool BenutzerWillBeenden { get; private set; }
 
         // Construtor
         public ConsoleView(RechnerModel model)
         {
             this.model = model;
+            this.BenutzerWillBeenden = false;
         }
 
         /// <summary>
@@ -37,11 +41,17 @@ namespace Taschenrechner
         /// <returns></returns>
         private float HoleZahlVomBenutzer()
         {
-            Console.Write("Gib eine Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
-            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
-            float wertZuZahl = float.Parse(wert); // Der eingegeben Wert string wird in einen float gewandelt.
+            string eingabe;
+            Console.Write("Gib eine Zahl ein (Q zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
 
-            return wertZuZahl; //Ausgabe des eingegbenen Wertes.
+            eingabe = Console.ReadLine(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
+            if (eingabe == "Q")
+            {
+                BenutzerWillBeenden = true;
+                eingabe = "0";
+            }
+            
+            return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
         }
 
         /// <summary>

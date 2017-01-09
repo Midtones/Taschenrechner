@@ -8,6 +8,7 @@ namespace Taschenrechner
 {
     class AnwendungsController
     {
+        // Verknüft die Klassen.
         private RechnerModel model;
         private ConsoleView view;
 
@@ -18,17 +19,20 @@ namespace Taschenrechner
             this.view = view;
         }
 
-        public void Ausführen()
+        public void TaschenrechnerAusführen()
         {
-            // Benutzereingaben werden abgefragt.
-            view.HoleBenutzerEingaben();
+            while (!view.BenutzerWillBeenden)
+            {
+                // Benutzereingaben werden abgefragt.
+                view.HoleBenutzerEingaben();
 
-            // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
-            model.BerrechneMitSwitchCase();
+                // Berrechnung wird ausgeführt und Ausgegeben. Gelöst mit Switch
+                model.BerrechneMitSwitchCase();
 
-            // Ausgabe
-            view.GibErgebnisAus();
-            view.WarteAufBenutzerEingabe("Zum beenden einfach die EINGABETASTE Drücken!");
+                // Ausgabe
+                view.GibErgebnisAus();
+            }
+ 
         }
 
     }
