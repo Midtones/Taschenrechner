@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
-    class RechnerModel
+    public class RechnerModel // public wird benötigt für die Komponententests
     {
         // Property / Eigenschaft **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
         public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
@@ -75,7 +75,7 @@ namespace Taschenrechner
         {
             // Addiert wert1 mit wert2
             float summe = wert1 + wert2;
-
+            
             // Gibt das Ergebnis aus der Methode zurück
             return summe;
         }

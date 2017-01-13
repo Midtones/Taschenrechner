@@ -42,8 +42,17 @@ namespace Taschenrechner
         private float HoleZahlVomBenutzer()
         {
             string eingabe;
+            float zahl;
+
             Console.Write("Gib eine Zahl ein: "); // gibt Text aus als Anweisung für den Nutzer.
             eingabe = Console.ReadLine(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
+
+            while (!float.TryParse(eingabe, out zahl)) // TryParse überprüft die Eingabe in der Variablen eingabe ob die Eingabe der Variablen Zahl die float ist entspricht.
+            {
+                Console.WriteLine("Du musst eine gültige Zahl eingeben!");
+                Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
+                eingabe = Console.ReadLine();
+            }
             
             return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
         }
