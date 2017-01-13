@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
+    public enum Fehler // Eine enum wird benötigt um eingen Datentypen zu erstellen.
+    {
+        Keiner,
+        GrenzwertUeberschreitung,
+        UngueltigeOperation
+    }
+
     public class RechnerModel 
     {
-        // Property / Eigenschaft **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
-        public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
-        public string Operation { get; set; }
-        public float Zahl1 { get; set; }
-        public float Zahl2 { get; set; }
 
         /// <summary>
         /// Constructor legt fest welche Variablen für die Klasse festgelgt werden müssen, damit die Methoden arbeiten können.
@@ -28,8 +30,108 @@ namespace Taschenrechner
         {
             Ergebnis = 0F;
             Operation = "unbekannt";
-            Zahl1 = 0F;
-            Zahl2 = 0F;
+            AktuellerFehler = Fehler.Keiner;
+        }
+
+        // Property / Eigenschaft **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
+        public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
+
+        private string operation = "ungueltig";
+        public string Operation
+        {
+            get
+            {
+                return operation;
+            }
+
+            set
+            {
+                // Wir ändern den Wert der Eigenschaft nur, wenn ein anderer Wert
+                // zugewiesen wird
+                if (value != operation)
+                {
+                    switch (value)
+                    {
+                        case "+":
+                        case "-":
+                        case "/":
+                        case "*":
+                            // Es wurde eine gültige Operation übergeben. Daher können wir
+                            // den Fehler zurücksetzen ...
+                            if (AktuellerFehler == Fehler.UngueltigeOperation)
+                            {
+                                AktuellerFehler = Fehler.Keiner;
+                            }
+                            // ... und den neuen Operator verwenden
+                            operation = value;
+                            break;
+
+                        default:
+                            // Die übergebene Operation wird nicht unterstützt. Daher wird 
+                            // angezeigt, dass ein Fehler anliegt und auch die operation zeigt
+                            // an, dass etwas nicht stimmt.
+                            operation = "ungueltig";
+                            AktuellerFehler = Fehler.UngueltigeOperation;
+                            break;
+                    }
+                }
+            }
+        }
+
+        private float zahl1 = 0;
+        public float Zahl1
+        {
+            get { return zahl1; }
+            set
+            {
+                if (zahl1 != value)
+                {
+                    AktuellerFehler = GrenzwertCheck(value);
+                    zahl1 = value;
+                }
+            }
+        }
+
+        private float zahl2 = 0;
+        public float Zahl2
+        {
+            get { return zahl2; }
+            set
+            {
+                if (zahl2 != value)
+                {
+                    AktuellerFehler = GrenzwertCheck(value);
+                    zahl2 = value;
+                }
+            }
+        }
+
+        public Fehler AktuellerFehler { get; private set; }
+        public static float ObererGrenzwert { get { return 100.0F; } }
+        public static float UntererGrenzwert { get { return -10.0F; } }
+
+
+
+        /// <summary>
+        /// Die Grenzwerte werden überprüft.
+        /// </summary>
+        /// <param name="zahl"></param>
+        /// <returns></returns>
+        private Fehler GrenzwertCheck(float zahl)
+        {
+            Fehler resultat = Fehler.Keiner;
+
+            if ((zahl < UntererGrenzwert) || (zahl > ObererGrenzwert))
+            {
+                resultat = Fehler.GrenzwertUeberschreitung;
+            }
+
+            return resultat;
+        }
+
+        public void FehlerZurueckSetzen()
+        {
+            AktuellerFehler = Fehler.Keiner;
         }
 
         /// <summary>
@@ -40,8 +142,12 @@ namespace Taschenrechner
         /// <param name="zahl2"></param>
         public void BerrechneMitSwitchCase()
         {
+            if (AktuellerFehler != Fehler.Keiner)
+            {
+                return;
+            }
 
-               switch (this.Operation)
+            switch (this.Operation)
             {
                 case "+":
                     Ergebnis = Addieren(this.Zahl1, this.Zahl2); // Ergebnis berechnet die beiden Zahlen.
@@ -134,8 +240,14 @@ namespace Taschenrechner
         /// <returns></returns>
         public void BerrechneMitIfElse(string operation, float zahl1, float zahl2)
         {
+            // Es wird geprüft ob ein Fehler vorliegt wenn Ja wird hier abgebrochen...!
+            if (AktuellerFehler != Fehler.Keiner)
+            {
+                return;
+            }
+
             // Berechnung wird ausgeführt gelöst mit if und else if
-            if (operation == "+")
+            else if (operation == "+")
             {
                 Ergebnis = Addieren(zahl1, zahl2); // Ergebnis berechnet die beiden Zahlen.
             }

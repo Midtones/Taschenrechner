@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taschenrechner", "Taschenre
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40044020-D5D6-4053-8BA0-06F1170A9D7B}"
 	ProjectSection(SolutionItems) = preProject
+		Aufgabe Grenzwerte.txt = Aufgabe Grenzwerte.txt
 		info.txt = info.txt
 	EndProjectSection
 EndProject

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
-    class ConsoleView
+    public class ConsoleView
     {
         // Verknüft die Klasse RechnerModel mit der ConsoleView damit wir zugriff haben auf den Speicher vom Model.
         private RechnerModel model;
@@ -53,8 +53,8 @@ namespace Taschenrechner
                 Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
                 eingabe = Console.ReadLine();
             }
-            
-            return Convert.ToSingle(eingabe); //Ausgabe des eingegbenen Wertes.
+
+            return zahl; //Ausgabe des eingegbenen Wertes.
         }
 
         /// <summary>
@@ -64,24 +64,43 @@ namespace Taschenrechner
         public void HoleFortlaufendeZahlVomBenutzer()
         {
             string eingabe;
+            float zahl;
 
-            eingabe = HoleNeueZahlVomBenutzer(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
-            if (eingabe == "Q")
+            eingabe = HoleNeueAktionVomBenutzer(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
+            if (eingabe.ToUpper() == "Q") // ToUpper konvertiert jede Konsolen eingabe in Großbuchstaben somit kann man q auch klein eingeben zum beenden.
             {
                 BenutzerWillBeenden = true;
             }
             else
             {
                 model.Zahl1 = model.Ergebnis;
-                model.Zahl2 = Convert.ToSingle(eingabe);
+
+                while (!float.TryParse(eingabe, out zahl)) // siehe Methode HoleZahlVomBenutzer...
+                {
+                    Console.WriteLine("Du musst eine gültige Zahl eingeben!");
+                    Console.Write("Bitte gib eine Zahl für die Berechnung ein (Zum beenden Q tippen):  ");
+                    eingabe = Console.ReadLine();
+                }
+
+                model.Zahl2 = zahl;
             }
+
+            do
+            {
+                if (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung)
+                {
+                    Console.WriteLine("FEHLER: Zahl muss größer als {0} und kleiner als {1} sein.", RechnerModel.UntererGrenzwert, RechnerModel.ObererGrenzwert);
+                    model.Zahl2 = HoleZahlVomBenutzer();
+                }
+            }
+            while (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung);
         }
 
         /// <summary>
         /// weitere Zahl Benutzereingabe
         /// </summary>
         /// <returns></returns>
-        private string HoleNeueZahlVomBenutzer()
+        private string HoleNeueAktionVomBenutzer()
         {
 
             Console.Write("Gib eine weiter Zahl ein (Q zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
@@ -97,10 +116,21 @@ namespace Taschenrechner
         /// <returns></returns>
         private string HoleOperator()
         {
-            Console.Write("gib die auszuführende Operation ein (+ - / *): "); // gibt Text aus als Anweisung für den Nutzer.
-            string wert = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+            string operation;
+            do
+            {
+                Console.Write("gib die auszuführende Operation ein (+ - / *): "); // gibt Text aus als Anweisung für den Nutzer.
+                operation = Console.ReadLine(); // Die Konsoleneingabe wirt in die Variable wert gespeichert.
+                model.Operation = operation;
 
-            return wert; //Ausgabe des eingegbenen Wertes.
+                if (model.AktuellerFehler == Fehler.UngueltigeOperation)
+                {
+                    Console.WriteLine("FEHLER ungültiger Operator!");
+                }
+
+            } while (model.AktuellerFehler == Fehler.UngueltigeOperation);
+
+            return operation; //Ausgabe des eingegbenen Wertes.
         }
 
         /// <summary>
@@ -139,9 +169,28 @@ namespace Taschenrechner
         /// </summary>
         public void HoleBenutzerEingabenFürErsteBerechnung()
         {
-            model.Zahl1 = HoleZahlVomBenutzer();
+            do
+            {
+                model.Zahl1 = HoleZahlVomBenutzer();
+                if (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung)
+                {
+                    Console.WriteLine("FEHLER: Zahl muss größer als {0} und kleiner als {1} sein.", RechnerModel.UntererGrenzwert, RechnerModel.ObererGrenzwert);
+                }
+            }
+            while (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung);
+
+
             model.Operation = HoleOperator();
-            model.Zahl2 = HoleZahlVomBenutzer();
+
+            do
+            {
+                model.Zahl2 = HoleZahlVomBenutzer();
+                if (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung)
+                {
+                    Console.WriteLine("FEHLER: Zahl muss größer als {0} und kleiner als {1} sein.", RechnerModel.UntererGrenzwert, RechnerModel.ObererGrenzwert);
+                }
+            }
+            while (model.AktuellerFehler == Fehler.GrenzwertUeberschreitung);
         }
     }
 }

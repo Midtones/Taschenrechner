@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnwendungsController.cs" />
+    <Compile Include="EnumBeispiel.cs" />
     <Compile Include="ConsoleView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

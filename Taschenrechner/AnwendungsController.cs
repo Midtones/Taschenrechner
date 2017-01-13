@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
-    class AnwendungsController
+    public class AnwendungsController
     {
         // Verknüft die Klassen.
         private RechnerModel model;

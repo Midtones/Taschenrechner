@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Taschenrechner
 {
     class Program
@@ -20,7 +21,8 @@ namespace Taschenrechner
             viewKlasse.ConsoleStyle(ConsoleColor.Cyan, 100, "Taschenrechner");
 
             // Programm Taschenrechner wird gestartet.
-            controllerKlasse.TaschenrechnerAusführen(); 
+            controllerKlasse.TaschenrechnerAusführen();
+
         }
     }
 }

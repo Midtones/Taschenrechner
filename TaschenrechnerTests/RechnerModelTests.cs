@@ -19,7 +19,6 @@ namespace Taschenrechner.Tests
 
             Assert.AreEqual(float.PositiveInfinity,model.Ergebnis);
 
-
         }
     }
 }

@@ -1,0 +1,15 @@
+
+
+Folgende Aufgabe:
+
+Die Eingabe überprüfen im RechnerModel ob die Werte -10,0 bis +100,0 eingehalten werden.
+
+Eingabe vom ConsoleView entgegen nehmen und ins RechnerModel übernehmen und überprüfen ob der Grenzbereich eingehalten wird.
+
+Zweite eingabe ConsoleView frägt RechnerModel ob die Zahl die gerade Eingegeben wurde auch gültig ist. Wenn nicht soll der Benutzer augefordert
+werden eine neue Zahl einzugeben mit dem Hinweis welche Bereiche gültig sind.
+
+
+
+
+
