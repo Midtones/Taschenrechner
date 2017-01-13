@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
-    public class RechnerModel // public wird benötigt für die Komponententests
+    public class RechnerModel 
     {
         // Property / Eigenschaft **** Shortcut **** "prob" tippen und zweimal "Tab-Taste".
         public float Ergebnis { get; private set; } // get und set zum abfragen der Eigenschaft. private verhindert das ändern von aussen!
