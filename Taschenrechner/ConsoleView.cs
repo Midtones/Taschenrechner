@@ -78,7 +78,7 @@ namespace Taschenrechner
                 while (!float.TryParse(eingabe, out zahl)) // siehe Methode HoleZahlVomBenutzer...
                 {
                     Console.WriteLine("Du musst eine gültige Zahl eingeben!");
-                    Console.Write("Bitte gib eine Zahl für die Berechnung ein (Zum beenden Q tippen):  ");
+                    Console.Write("Bitte gib eine Zahl für die Berechnung ein (Zum beenden \"Q\" tippen):  ");
                     eingabe = Console.ReadLine();
                 }
 
@@ -103,7 +103,7 @@ namespace Taschenrechner
         private string HoleNeueAktionVomBenutzer()
         {
 
-            Console.Write("Gib eine weiter Zahl ein (Q zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
+            Console.Write("Gib eine weiter Zahl ein (\"Q\" zum beenden): "); // gibt Text aus als Anweisung für den Nutzer.
             string eingabe = Console.ReadLine(); // Die Konsoleneingabe wird in die Variable eingabe gespeichert.
 
             return eingabe;

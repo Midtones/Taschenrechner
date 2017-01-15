@@ -55,3 +55,12 @@ Projekt Taschenrechner
         }
 		// **** shortcut **** "while" tippen und zweimal "Tab-Taste".
 
+
+***String special***
+
+string neueZeile = "Text Zeile eins \n Text Zeile zwei";
+string anfuehrungsZeichen = "einen Text in \"Anfuehrungszeichen\" setzten";
+string pfad = "c:\\temp";
+string pfadAlternative = @"c:\temp";
+
+
